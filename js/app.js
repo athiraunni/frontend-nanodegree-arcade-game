@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt,speed) {
     if(this.x > 500){
         //enemy s standing out of canvas
         this.x = 0; //startover
-        this.y = ;
+        this.y = enemyRows[Math.round(Math.random()*(enemyRows.length-1))];
         this.speed = Math.random() * (240 - 60) + 60;
     }
     else{
@@ -88,22 +88,22 @@ Player.prototype.render = function(x,y){
 //key press input handling
 Player.prototype.handleInput = function(key){
     switch(key){
-        case:"left" :
+        case "left" :
             if(this.x >= 95){
                 this.x = this.x - 95;
             };
         break;
-        case:"right" :
+        case "right" :
             if(this.x <= 375){
                 this.x = this.x + 95;
             };
         break;
-        case:"up" :
+        case "up" :
             if(this.y >= 50){
                 this.y = this.y - 83;
             };
         break;
-        case:"down" :
+        case "down" :
             if(this.y <= 400){
                 this.y = this.y + 83;
             };
