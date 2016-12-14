@@ -1,3 +1,6 @@
+//enable strict mode
+'use strict';
+
 // Enemies our player must avoid
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -29,16 +32,15 @@ Enemy.prototype.update = function(dt,speed) {
     else{
         this.x += (this.speed * dt);
     }
-
     //detect collision
     enemyBox = {x: this.x, y: this.y};
     playerBox = {x: player.x, y: player.y};
     if ((enemyBox.x < (playerBox.x + 50)) && ((enemyBox.x + 75) > playerBox.x) && (enemyBox.y < (playerBox.y + 63)) && ((77 + enemyBox.y) > playerBox.y))
          {
-          console.log("reset");
-      setTimeout(lostMessage, 500)
+          //    console.log("reset");
+      setTimeout(lostMessage, 500);
       setTimeout(player.reset(), 10000);
-    };
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -70,10 +72,10 @@ Player.prototype.update = function(x,y){
 //Win or Loss Message !!!
 function winMessage(){
     alert("You Won..!! :)");
-};
+}
 function lostMessage(){
     alert("You Lose..!! :( Try Again.");
-};
+}
 
 //render game
 Player.prototype.render = function(x,y){
@@ -81,8 +83,8 @@ Player.prototype.render = function(x,y){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     if(this.y<0){
         setTimeout(winMessage,1000);  //player Win
-        setTimeout(player.reset(),1000);  //reset game
-    };
+        setTimeout(this.reset(),1000);  //reset game
+    }
 };
 
 //key press input handling
@@ -91,24 +93,24 @@ Player.prototype.handleInput = function(key){
         case "left" :
             if(this.x >= 95){
                 this.x = this.x - 95;
-            };
+            }
         break;
         case "right" :
             if(this.x <= 375){
                 this.x = this.x + 95;
-            };
+            }
         break;
         case "up" :
             if(this.y >= 50){
                 this.y = this.y - 83;
-            };
+            }
         break;
         case "down" :
             if(this.y <= 400){
                 this.y = this.y + 83;
-            };
+            }
         break;
-    };
+    }
 };
 
 // Now instantiate your objects.
@@ -123,7 +125,7 @@ var player = new Player();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+        var allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
